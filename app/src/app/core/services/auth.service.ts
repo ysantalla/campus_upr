@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { LocalStorageService } from '@app/core/services/local-storage.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { HttpErrorResponse } from '@angular/common/http';
 
 const TOKEN_PREFIX = 'TOKEN';
+const LANGUAGE_PREFIX = 'LANGUAGE';
 
 
 @Injectable({
@@ -18,10 +18,33 @@ export class AuthService {
   private token$ = new BehaviorSubject('');
   private username$ = new BehaviorSubject('');
 
+  private language$ = new BehaviorSubject('en');
+
   constructor(
     private localStorageService: LocalStorageService
   ) {
+    const lang = this.localStorageService.getItem(LANGUAGE_PREFIX);
 
+    if (lang) {
+      this.language$.next(lang);
+    }
+
+    this.language$.subscribe(language => {
+      this.localStorageService.setItem(LANGUAGE_PREFIX, language);
+    });
+
+  }
+
+  public getLanguageAsync(): Observable<string> {
+    return this.language$.asObservable();
+  }
+
+  public getLanguage(): string {
+    return this.language$.value;
+  }
+
+  public setLanguage(language: string): void {
+    return this.language$.next(language);
   }
 
   public getUsername(): Observable<string> {

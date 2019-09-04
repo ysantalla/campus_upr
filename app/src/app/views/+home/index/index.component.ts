@@ -2,12 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-index',
-  template: `
-    <p>
-      index works!
-    </p>
-  `,
-  styles: []
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
 

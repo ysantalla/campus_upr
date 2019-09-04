@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: '',
     component: IndexComponent,
-    data: {title: 'Acerca de'}
+    data: {title: 'home'}
   }
 ];
 

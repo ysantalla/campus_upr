@@ -3,8 +3,8 @@
 
 @include mat-core();
 
-$primary: mat-palette($mat-cyan, 900);
-$accent:  mat-palette($mat-cyan, 700);
+$primary: mat-palette($mat-cyan, 800);
+$accent:  mat-palette($mat-green, 700);
 
 // The warn palette is optional (defaults to red).
 $warn:    mat-palette($mat-red);
@@ -23,6 +23,9 @@ $custom-typography: mat-typography-config(
     $body-1: mat-typography-level(16px, 24px, 500)
 );
 
+.spacer {
+  flex: 1 1 auto;
+}
 
 /*Define the @font-face Material Icons*/
 @font-face {

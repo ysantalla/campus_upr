@@ -1,0 +1,25 @@
+{
+	"app": {
+		"about": "Acerca",
+		"change": "Cambiar",
+		"close": "Cerrar",
+		"cu-key": "Contactanos",
+		"dashboard": "Escritorio",
+		"developers": "Desarrolladores",
+		"english": "Inglés",
+		"error": "Error",
+		"home": "Inicio",
+		"language": "Lenguaje",
+		"login": "Iniciar sesión",
+		"logout": "Cerrar sesión",
+		"spanish": "Español"
+	},
+	"components": {
+		"home": {
+			"home": "Inicio"
+		},
+		"unauthorized": {
+			"error-text": "Disculpa, usted no esta autorizado a acceder a esa funcionalidad."
+		}
+	}
+}

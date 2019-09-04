@@ -1,0 +1,25 @@
+{
+	"app": {
+		"about": "About Us",
+		"change": "Change",
+		"close": "Close",
+		"cu-key": "Contact Us",
+		"dashboard": "Dashboard",
+		"developers": "Developers",
+		"english": "English",
+		"error": "Error",
+		"home": "Home",
+		"language": "Language",
+		"login": "Log in",
+		"logout": "Logout",
+		"spanish": "Spanish"
+	},
+	"components": {
+		"home": {
+			"home": "Home"
+		},
+		"unauthorized": {
+			"error-text": "Sorry, you are not authorized to access this functionality."
+		}
+	}
+}

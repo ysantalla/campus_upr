@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -21,9 +21,9 @@ import { Menu } from '@app/core/models/menu.model';
         fixedInViewport="false"
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="!(isHandset$ | async) && (isLoggedIn$ | async)">
+        [opened]="((isHandset$ | async) === false) && (isLoggedIn$ | async)">
         <mat-toolbar class="sidenav-navbar" color="primary">
-          <img class="logo" src="assets/logo_64x64.png" />
+          <img class="logo" src="assets/img/logo_100x100.png" />
           <span>{{appName}}</span>
         </mat-toolbar>
 
@@ -43,9 +43,13 @@ import { Menu } from '@app/core/models/menu.model';
               <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
 
-            <span *ngIf="!(isHandset$ | async)">{{appName}}</span>
+            <span *ngIf="((isHandset$ | async) === false)">{{appName}}</span>
 
             <span class="spacer"></span>
+
+            <button mat-button (click)="changeLang()">
+              <span class="text-lang">{{language}}</span>
+            </button>
 
             <button mat-button [matMenuTriggerFor]="menu">
               <span *ngIf="(isLoggedIn$ | async)">Bienvenido {{username$ | async}}</span>
@@ -69,7 +73,7 @@ import { Menu } from '@app/core/models/menu.model';
                 <span>Cerrar Sesión</span>
               </button>
 
-              <button mat-menu-item *ngIf="!(isLoggedIn$ | async)" routerLink="auth/login">
+              <button mat-menu-item *ngIf="((isLoggedIn$ | async) === false)" routerLink="auth/login">
                 <mat-icon>lock_open</mat-icon>
                 <span>Iniciar Sesión</span>
               </button>
@@ -109,6 +113,10 @@ import { Menu } from '@app/core/models/menu.model';
     mat-nav-list a.menu {
       margin-top: 2px;
       margin-bottom: 2px;
+    }
+
+    .text-lang {
+      text-transform: uppercase;
     }
 
     .navbar {
@@ -172,6 +180,9 @@ export class LayoutComponent implements OnInit {
   isLoggedIn$: Observable<boolean>;
   username$: Observable<string>;
 
+  @Input() language: string;
+  @Output() switchLang = new EventEmitter();
+
   dashboard: Menu;
   about: Menu;
 
@@ -216,6 +227,10 @@ export class LayoutComponent implements OnInit {
     this.authService.logout();
     this.snackBar.open('Usted a cerrado su sesión', 'X', {duration: 3000});
     this.router.navigate(['auth', 'login']);
+  }
+
+  changeLang(): void {
+    this.switchLang.emit(this.language);
   }
 
 }
