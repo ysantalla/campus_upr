@@ -28,6 +28,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { SizePipe } from './pipes/size.pipe';
+import { TranslocoModule } from '@ngneat/transloco';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   imports: [
@@ -52,6 +54,7 @@ import { SizePipe } from './pipes/size.pipe';
     MatGridListModule,
     MatChipsModule,
     MatAutocompleteModule,
+    TranslocoModule,
 
     RouterModule
   ],
@@ -78,6 +81,8 @@ import { SizePipe } from './pipes/size.pipe';
     MatGridListModule,
     MatChipsModule,
     MatAutocompleteModule,
+    TranslocoModule,
+    CarouselModule,
 
     LayoutComponent,
     SizePipe

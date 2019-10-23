@@ -1,29 +1,169 @@
-<br />
-<div class="container" fxLayout="row" fxLayoutAlign="center center">
-  <div class="item" fxFlex="60%" fxFlex.xs="98%" fxFlex.md="70%">
+<!--
+<header class="header" [ngClass]="color">
 
-    <div class="mat-elevation-z8">
-        <mat-card class="proyecto-card">
-          <mat-card-header>
-            <mat-card-title>
-              <h1 class="mat-h1">Error</h1>
-            </mat-card-title>
-          </mat-card-header>
+    <div class="container" fxLayout="row wrap" fxLayoutAlign="center center">
 
-          <mat-card-content>
+              <div class="item" fxFlex="1 1 65%" fxFlex.lt-md="1 1 100%" fxLayoutAlign="center center" fxLayout="column wrap">
 
-            <h3 class="mat-h3">
-              Disculpa, usted no esta autorizado a acceder a esa funcionalidad.
-            </h3>
+                <div class="item" fxFlex="1 1 70%">
+                  <h1 ngClass.lt-md="mat-h1-lt-xs" ngClass.md="mat-h1-md" ngClass.gt-md="mat-h1-gt-md" style="font-size: 60px;" [@EnterLeft]="'flyIn'">{{"welcome" | transloco}}</h1>
+                </div>
 
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button color="accent" routerLink="/dashboard" routerLinkActive type="button" aria-label="dashboard">
-              <mat-icon>dashboard</mat-icon>
-              <span>Escritorio</span>
-            </button>
-          </mat-card-actions>
-        </mat-card>
+                <div class="item" fxFlex="1 1 70%">
+                  <h2 class="mat-h2" [@EnterLeftSlogan]="'flyIn'">Slogan (sembrando pinos nuevos)...</h2>
+                </div>
+
+                <div class="item" fxFlex="1 1 40%">
+                  <button *ngIf="color === 'green'" routerLink="/college" mat-raised-button [@EnterLeftButton]="'flyIn'">{{"start" | transloco}}</button>
+
+                  <button *ngIf="color === 'white'" routerLink="/college" color="primary" style="color: white;" mat-raised-button [@EnterLeftButton]="'flyIn'">{{"start" | transloco}}</button>
+                </div>
+
+              </div>
+              <div class="item" fxFlex="1 1 35%" fxFlex.lt-md="1 1 100%" fxLayoutAlign="center">
+
+                <picture [@EnterRight]="'flyIn'">
+
+                      img[src.xs],    img[src.sm],    img[src.md],    img[src.lg],   img[src.xl],
+                      img[src.lt-sm], img[src.lt-md], img[src.lt-lg], img[src.lt-xl],
+                      img[src.gt-xs], img[src.gt-sm], img[src.gt-md], img[src.gt-lg]
+
+                  <img *ngIf="color === 'white'" src="./assets/img/logo_600x500.png" src.lt-md="./assets/img/logo_350x250.png"/>
+
+                  <img *ngIf="color === 'green'" src="./assets/img/logo_white_600x500.png" src.lt-md="./assets/img/logo_white_350x250.png"/>
+                </picture>
+
+              </div>
+
+            </div>
+
+</header>
+-->
+
+<header fxLayout="row wrap" fxLayoutAlign="center center" [@fadeInOut]>
+  <div fxFlex="1 1 100%">
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide>
+          <img src="./assets/img/bienvenida-upr.jpg" src.lt-md="./assets/img/bienvenida-upr.jpg"/>
+      </ng-template>
+
+      <ng-template carouselSlide>
+          <img src="./assets/img/bienvenida-upr.jpg" src.lt-md="./assets/img/bienvenida-upr.jpg"/>
+      </ng-template>
+
+      <ng-template carouselSlide>
+          <img src="./assets/img/bienvenida-upr.jpg" src.lt-md="./assets/img/bienvenida-upr.jpg"/>
+      </ng-template>
+
+    </owl-carousel-o>
+  </div>
+</header>
+
+<article [ngClass]="otherColor" >
+    <div class="container-news" fxLayout="row wrap" fxLayoutAlign="start start" [@fadeInOut]>
+      <div class="item-news" fxFlex="1 1 100%">
+        <h1 class="mat-h1" ngClass.lt-md="mat-h1-lt-xs" ngClass.md="mat-h1-md" ngClass.gt-md="mat-h1-gt-md">{{"news" | transloco}}</h1>
+      </div>
+    </div>
+    <app-news [@fadeInOut]></app-news>
+</article>
+
+<article [ngClass]="color">
+    <div class="container-upr-humans" fxLayout="row wrap" fxLayoutAlign="center center" [@fadeInOut]>
+      <div class="item-humans" fxFlex="1 1 30%" fxFlex.lt-md="1 1 100%" fxLayout="row wrap" fxLayoutAlign="center center">
+
+        <div class="item" fxFlex="1 1 30%">
+          <mat-icon class="humans">person</mat-icon>
+        </div>
+
+        <div class="item" fxFlex="1 1 70%">
+          <mat-list>
+            <mat-list-item>
+                <h1 class="mat-h1 humans-text" [ngClass]="color+'-color'">{{"profesors" | transloco}}</h1>
+            </mat-list-item>
+            <mat-list-item>
+                <h2 class="mat-h2 humans-text" [ngClass]="color+'-color'"> 1300</h2>
+            </mat-list-item>
+          </mat-list>
+        </div>
+
+      </div>
+      <div class="item-humans" fxFlex="1 1 30%" fxFlex.lt-md="1 1 100%">
+          <div class="item" fxFlex="1 1 30%">
+              <mat-icon class="humans">person</mat-icon>
+            </div>
+
+            <div class="item" fxFlex="1 1 70%">
+              <mat-list>
+                <mat-list-item>
+                    <h1 class="mat-h1 humans-text" [ngClass]="color+'-color'">{{"students" | transloco}}</h1>
+                </mat-list-item>
+                <mat-list-item>
+                    <h2 class="mat-h2 humans-text" [ngClass]="color+'-color'"> 4500</h2>
+                </mat-list-item>
+              </mat-list>
+            </div>
+      </div>
+      <div class="item-humans" fxFlex="1 1 30%" fxFlex.lt-md="1 1 100%">
+          <div class="item" fxFlex="1 1 30%">
+              <mat-icon class="humans">person</mat-icon>
+            </div>
+
+            <div class="item" fxFlex="1 1 70%">
+              <mat-list>
+                <mat-list-item>
+                    <h1 class="mat-h1 humans-text" [ngClass]="color+'-color'">{{"doctors" | transloco}}</h1>
+                </mat-list-item>
+                <mat-list-item>
+                    <h2 class="mat-h2 humans-text" [ngClass]="color+'-color'"> 650</h2>
+                </mat-list-item>
+              </mat-list>
+            </div>
+      </div>
+    </div>
+  </article>
+
+<article [ngClass]="otherColor" >
+  <div class="container-events" fxLayout="row wrap" fxLayoutAlign="start start" [@fadeInOut]>
+    <div class="item-events" fxFlex="1 1 100%">
+      <h1 class="mat-h1" ngClass.lt-md="mat-h1-lt-xs" ngClass.md="mat-h1-md" ngClass.gt-md="mat-h1-gt-md">{{"events" | transloco}}</h1>
+    </div>
+
+    <div class="item-events" fxFlex="1 1 25%" fxFlex.lt-md="1 1 100%">
+      <h2 class="mat-h2">Lorem ipsum dolor sit amet</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+      <a mat-button >{{"read" | transloco}}</a>
+    </div>
+    <div class="item-events" fxFlex="1 1 25%" fxFlex.lt-md="1 1 100%">
+      <h2 class="mat-h2">Lorem ipsum dolor sit amet</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+      <a mat-button >{{"read" | transloco}}</a>
+    </div>
+    <div class="item-events" fxFlex="1 1 25%" fxFlex.lt-md="1 1 100%">
+      <h2 class="mat-h2">Lorem ipsum dolor sit amet</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+      <a mat-button >{{"read" | transloco}}</a>
+    </div>
+    <div class="item-events" fxFlex="1 1 25%" fxFlex.lt-md="1 1 100%">
+      <h2 class="mat-h2">Lorem ipsum dolor sit amet</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+      <a mat-button >{{"read" | transloco}}</a>
     </div>
   </div>
-</div>
+</article>
+
+<article [ngClass]="color">
+  <div class="container-links" fxLayout="row wrap" fxLayoutAlign="center center" [@fadeInOut]>
+    <div class="item-links" fxFlex="1 1 50%" fxFlex.lt-md="1 1 100%">
+
+    </div>
+
+    <div class="item-links" fxFlex="1 1 50%" fxFlex.lt-md="1 1 100%">
+
+    </div>
+  </div>
+</article>

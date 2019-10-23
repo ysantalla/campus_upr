@@ -1,25 +1,29 @@
 {
-	"app": {
-		"about": "About Us",
-		"change": "Change",
-		"close": "Close",
-		"cu-key": "Contact Us",
-		"dashboard": "Dashboard",
-		"developers": "Developers",
-		"english": "English",
-		"error": "Error",
-		"home": "Home",
-		"language": "Language",
-		"login": "Log in",
-		"logout": "Logout",
-		"spanish": "Spanish"
-	},
-	"components": {
-		"home": {
-			"home": "Home"
-		},
-		"unauthorized": {
-			"error-text": "Sorry, you are not authorized to access this functionality."
-		}
-	}
+  "title": "transloco en",
+  "dynamic": "transloco {{value}}",
+  "welcome": "Universidad de Pinar del Río “Hermanos Saíz Montes de Oca”",
+  "home": "Home",
+  "college": "College",
+  "teaching": "Teaching",
+  "investigation": "Investigation",
+  "internationalization": "Internationalization",
+  "extension": "Extension",
+  "services": "Services",
+  "login": "Log in",
+  "logout": "Log out",
+  "profile": "Profile",
+  "change_password": "Change Password",
+  "footer": "All Rights Reserved",
+  "about": "About",
+  "dashboard": "Dashboard",
+  "start": "Start",
+  "news": "News",
+  "events": "Events",
+  "read": "Read More",
+  "students": "Students",
+  "profesors": "Profesors",
+  "doctors": "Doctores",
+  "error_news": "Oops an error has occurred, when loading the news !!!",
+  "search": "Search",
+  "contacts": "Contactos"
 }

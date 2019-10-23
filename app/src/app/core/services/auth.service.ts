@@ -18,7 +18,7 @@ export class AuthService {
   private token$ = new BehaviorSubject('');
   private username$ = new BehaviorSubject('');
 
-  private language$ = new BehaviorSubject('en');
+  private language$ = new BehaviorSubject('es');
 
   constructor(
     private localStorageService: LocalStorageService

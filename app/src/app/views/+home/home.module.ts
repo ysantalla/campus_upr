@@ -4,6 +4,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 
 import { IndexComponent } from './index/index.component';
+import { NewsComponent } from './news/news.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,7 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [IndexComponent]
+  declarations: [IndexComponent, NewsComponent]
 })
 export class HomeModule { }
 

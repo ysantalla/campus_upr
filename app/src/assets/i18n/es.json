@@ -1,25 +1,29 @@
 {
-	"app": {
-		"about": "Acerca",
-		"change": "Cambiar",
-		"close": "Cerrar",
-		"cu-key": "Contactanos",
-		"dashboard": "Escritorio",
-		"developers": "Desarrolladores",
-		"english": "Inglés",
-		"error": "Error",
-		"home": "Inicio",
-		"language": "Lenguaje",
-		"login": "Iniciar sesión",
-		"logout": "Cerrar sesión",
-		"spanish": "Español"
-	},
-	"components": {
-		"home": {
-			"home": "Inicio"
-		},
-		"unauthorized": {
-			"error-text": "Disculpa, usted no esta autorizado a acceder a esa funcionalidad."
-		}
-	}
+  "title": "transloco es",
+  "dynamic": "transloco {{value}}",
+  "welcome": "Universidad de Pinar del Río “Hermanos Saíz Montes de Oca”",
+  "home": "Inicio",
+  "college": "Universidad",
+  "teaching": "Docencia",
+  "investigation": "Investigación",
+  "internationalization": "Internacionalización",
+  "extension": "Extensión",
+  "services": "Servicios",
+  "login": "Iniciar Sesión",
+  "logout": "Cerrar Sesión",
+  "profile": "Perfil",
+  "change_password": "Cambiar Contraseña",
+  "footer": "Todos los Derechos Reservados",
+  "about": "Acerca de",
+  "dashboard": "Escritorio",
+  "start": "Comenzar",
+  "news": "Noticias",
+  "events": "Eventos",
+  "read": "Leer más",
+  "students": "Estudiantes",
+  "profesors": "Profesores",
+  "doctors": "Doctores",
+  "error_news": "Oops ha ocurrido un error, al cargar las noticias!!!",
+  "search": "Buscar",
+  "contacts": "Contactos"
 }

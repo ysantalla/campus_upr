@@ -11,19 +11,15 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { CoreModule } from '@app/core/core.module';
 import { SharedModule } from '@app/shared/shared.module';
 import { AuthGuard } from '@app/core/guards/auth.guard';
+import { environment } from '../environments/environment';
 
-
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
-
+import { translocoLoader } from './core/loaders/transloco.loader';
+import { TranslocoModule, TRANSLOCO_CONFIG, TranslocoConfig } from '@ngneat/transloco';
 
 const routes: Routes = [
   {
@@ -42,22 +38,27 @@ const routes: Routes = [
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     CoreModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
-        deps: [HttpClient]
-    },
-      isolate : false
-    }),
     SharedModule.forRoot(),
     BrowserAnimationsModule,
     RouterModule.forRoot(routes,
       {
         preloadingStrategy: PreloadAllModules
-      })
+      }),
+    HttpClientModule,
+    TranslocoModule
   ],
-  providers: [ { provide: LOCALE_ID, useValue: 'es-CU' } ],
+  providers: [ { provide: LOCALE_ID, useValue: 'es-CU' }, {
+      provide: TRANSLOCO_CONFIG,
+      useValue: {
+        listenToLangChange: true,
+        defaultLang: 'es',
+        fallbackLang: 'en',
+        prodMode: environment.production,
+        scopeStrategy: 'shared'
+      } as TranslocoConfig
+    },
+    translocoLoader
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

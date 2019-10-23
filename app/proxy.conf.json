@@ -1,0 +1,7 @@
+{
+ "/wp-json/*": {
+  "target": "http://noticias.upr.edu.cu",
+  "secure": false,
+  "changeOrigin": true
+  }
+}

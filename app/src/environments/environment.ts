@@ -3,6 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  baseUrl: 'http://localhost:4200',
+  newsUrl: 'http://noticias.upr.edu.cu/wp-json/wp/v2/posts?per_page=4&page=1&_embed',
   production: false,
   envName: 'Development',
   appName: 'CAMPUS UPR'

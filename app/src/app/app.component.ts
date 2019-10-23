@@ -1,49 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AuthService } from '@app/core/services/auth.service';
-
 import { environment as env } from '@env/environment';
 import { Title } from '@angular/platform-browser';
 import { Router, ActivationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { TranslocoService } from '@ngneat/transloco';
 
-import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
   template: `
-    <app-layout [language]="activeLang" (switchLang)="switchLang($event)"></app-layout>  `,
-  styles: [`
-  `],
+    <app-layout [language]="activeLang" (switchLang)="switchLang($event)"></app-layout>
+  `,
+  styles: []
 })
 export class AppComponent implements OnInit {
   envName = env.envName;
   appName = env.appName;
 
   title: string;
-
   public activeLang: string;
 
   constructor(
     private router: Router,
     private titleService: Title,
-    private translate: TranslateService,
-    private authService: AuthService
+    private translocoService: TranslocoService
   ) {}
 
   ngOnInit(): void {
 
-    this.activeLang = this.authService.getLanguage();
-    this.translate.setDefaultLang(this.activeLang);
-    this.translate.use(this.activeLang);
-
-    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-      if (event) {
-        this.translate.get(`app.${this.title}`).subscribe((title: string) => {
-          this.titleService.setTitle(title ? `${title} - ${env.appName}` : env.appName);
-        });
-      }
-    });
+    this.activeLang = this.translocoService.getDefaultLang();
 
     this.router.events
       .pipe(filter(event => event instanceof ActivationEnd))
@@ -53,21 +39,32 @@ export class AppComponent implements OnInit {
           lastChild = lastChild.children[0];
         }
         const { title } = lastChild.data;
-
         this.title = title;
+        const newTitle = this.translocoService.translate(this.title);
 
-        this.translate.get(`app.${title}`).subscribe(data => {
-          this.titleService.setTitle(
-            title ? `${data} - ${env.appName}` : env.appName
-          );
-        });
+        this.titleService.setTitle(
+          title ? `${newTitle} - ${env.appName}` : env.appName
+        );
+
       });
+
+    this.translocoService.langChanges$.subscribe(lang => {
+      if (this.title) {
+        const title = this.translocoService.translate(this.title);
+        this.titleService.setTitle(
+          title ? `${title} - ${env.appName}` : env.appName
+        );
+      }
+    });
 
   }
 
   switchLang($lang: string): void {
-    this.activeLang = $lang === 'es' ? 'en' : 'es';
-    this.translate.use(this.activeLang);
-    this.authService.setLanguage(this.activeLang);
+    this.activeLang = this.translocoService.getActiveLang() === 'es' ? 'en' : 'es';
+
+    this.translocoService.load(this.activeLang).subscribe(data => {
+      this.translocoService.setActiveLang(this.activeLang);
+    });
+
   }
 }

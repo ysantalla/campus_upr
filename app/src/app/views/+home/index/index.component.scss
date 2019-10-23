@@ -1,1 +1,74 @@
+.header {
+  width: 100%;
+  min-height: 70vh;
+  height: 80vh;
+  box-sizing: border-box;
+  padding: 180px 30px 30px 30px;
+  overflow: hidden;
+  -webkit-transform: skewY(1deg);
+  transform: skewY(1deg);
+  -webkit-transform-origin: 100%;
+  transform-origin: 100%;
+  box-shadow: 0 1px 2px -1px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 2px 0 rgba(0,0,0,.12);
 
+}
+
+h1.mat-h1-gt-md {
+  font: 400 50px/48px Roboto, "Helvetica Neue", sans-serif!important;
+}
+
+h1.mat-h1-md {
+  font: 400 40px/38px Roboto, "Helvetica Neue", sans-serif!important;
+}
+
+h1.mat-h1-lt-xs {
+  font: 400 30px/28px Roboto, "Helvetica Neue", sans-serif!important;
+}
+
+.green {
+  background: linear-gradient(100deg,#13632F,#00C853);
+  color: white;
+  box-shadow: 0 1px 2px -1px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 2px 0 rgba(0,0,0,.12);
+}
+
+.green-color {
+  color: white;
+}
+
+.white-color {
+  color: #13632F;
+}
+
+.white {
+  background: linear-gradient(100deg, #fff,#fff);
+  color: #13632F;
+  box-shadow: 0 1px 2px -1px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 2px 0 rgba(0,0,0,.12);
+}
+
+.container {
+  width: 100%;
+  min-height: 40vh;
+  height: 40vh;
+}
+
+.container-news, .container-events, .container-upr-humans {
+  padding: 30px 30px 10px 30px;
+}
+
+.item-news {
+  padding: 8px;
+}
+
+mat-icon.humans {
+  height: 120px;
+  width: 120px;
+  font-size: 120px;
+}
+
+h1.humans-text {
+  font: 400 34px/32px Roboto, "Helvetica Neue", sans-serif;
+}
+
+h2.humans-text {
+  font: 400 30px/28px Roboto, "Helvetica Neue", sans-serif;
+}

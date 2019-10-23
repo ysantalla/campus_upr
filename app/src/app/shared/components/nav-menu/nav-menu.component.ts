@@ -15,8 +15,8 @@ import { Menu } from '@app/core/models/menu.model';
           <a class="menu" mat-list-item *ngIf="items.pages.length === 0"
               [routerLink]="items.link"
               routerLinkActive="active">
-              <mat-icon>{{items.icon}}</mat-icon>
-              <span class="nav-link-text">{{items.heading}}</span>
+              <mat-icon *ngIf="items.icon">{{items.icon}}</mat-icon>
+              <span class="nav-link-text">{{items.heading | transloco}}</span>
           </a>
 
           <!-- use expansion panel for heading item with sub page links -->
@@ -24,8 +24,8 @@ import { Menu } from '@app/core/models/menu.model';
 
             <mat-expansion-panel-header class="menu" [expandedHeight]="'48px'">
               <mat-panel-title class="nav-link" mat-list-item>
-                <mat-icon>{{items.icon}}</mat-icon>
-                <span class="nav-link-text">{{items.heading}}</span>
+                <mat-icon *ngIf="items.icon">{{items.icon}}</mat-icon>
+                <span class="nav-link-text">{{items.heading  | transloco}}</span>
               </mat-panel-title>
             </mat-expansion-panel-header>
 
@@ -34,8 +34,8 @@ import { Menu } from '@app/core/models/menu.model';
               <a class="nav-link nav-link-subpage menu" mat-list-item *ngFor="let page of items.pages"
                   [routerLink]="page.link"
                   routerLinkActive="active">
-                  <mat-icon style="margin-left: 1vw">{{page.icon}}</mat-icon>
-                  <span class="nav-link-text">{{page.heading}}</span>
+                  <mat-icon *ngIf="items.icon" style="margin-left: 1vw">{{page.icon}}</mat-icon>
+                  <span class="nav-link-text nav-link-padding">{{page.heading | transloco}}</span>
               </a>
             </div>
           </mat-expansion-panel>

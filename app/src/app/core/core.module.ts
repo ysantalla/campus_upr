@@ -21,8 +21,7 @@ import { RedirectGuard } from './guards/redirect.guard';
   ],
   providers: [
     AuthGuard,
-    RedirectGuard,
-    AuthService
+    RedirectGuard
   ],
   declarations: []
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ElementRef, ViewChild, HostListener, AfterViewInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { environment as env } from '@env/environment';
 
 import { Menu } from '@app/core/models/menu.model';
+import { trigger, style, state, transition, animate } from '@angular/animations';
+import { TranslocoService } from '@ngneat/transloco';
 
 
 @Component({
@@ -19,36 +21,90 @@ import { Menu } from '@app/core/models/menu.model';
         #drawer
         class="sidenav"
         fixedInViewport="false"
-        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-        [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="((isHandset$ | async) === false) && (isLoggedIn$ | async)">
-        <mat-toolbar class="sidenav-navbar" color="primary">
-          <img class="logo" src="assets/img/logo_100x100.png" />
-          <span>{{appName}}</span>
+        attr.role="navigation"
+        mode="over"
+        [opened]="(isHandset$ | async) === false && (isLoggedIn$ | async)">
+        <mat-toolbar class="navbar-sidebar">
+          <img class="logo-sidenav" src="./assets/img/logo_350x250.png" />
+          <span class="text-button">{{appName}}</span>
         </mat-toolbar>
 
-        <app-nav-menu *ngIf="(isLoggedIn$ | async)" [items]="dashboard"></app-nav-menu>
+        <nav class="nav-sidebar">
+          <app-nav-menu [items]="nav"></app-nav-menu>
 
-        <app-nav-menu [items]="about"></app-nav-menu>
+          <app-nav-menu [items]="dashboard" *ngIf="(isLoggedIn$ | async)"></app-nav-menu>
+
+          <app-nav-menu [items]="about"></app-nav-menu>
+        </nav>
 
       </mat-sidenav>
       <mat-sidenav-content>
-        <mat-toolbar class="navbar" color="primary">
+      <mat-toolbar class="" style="background-color: white;" [@fadeInOut]>
+        <mat-toolbar-row>
+          <picture [fxHide.lt-lg]="true">
+            <img class="logo" src="./assets/img/logo_350x250.png">
+          </picture>
+          <span class="spacer"></span>
+          <div class="search">
+            <mat-icon label="search">search</mat-icon>
+            <input type="search" [placeholder]="'search' | transloco" class="search">
+          </div>
+          <span class="spacer"></span>
+          <button mat-raised-button>{{'contacts' | transloco}}</button>
+        </mat-toolbar-row>
+      </mat-toolbar>
+
+      <!-- this is the sticky menu -->
+      <header class="tabs is-centered is-fullwidth" #stickyMenu [class.sticky] = "sticky">
+
+        <mat-toolbar class="navbar" color="primary" [@fadeInOut]>
           <mat-toolbar-row>
             <button
               type="button"
               aria-label="Toggle sidenav"
+              class="toggle"
+              [fxHide]="true"
+              [fxShow.lt-lg]="true"
               mat-icon-button
               (click)="drawer.toggle()">
               <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
 
-            <span *ngIf="((isHandset$ | async) === false)">{{appName}}</span>
+            <nav class="nav-items" [fxHide.lt-lg]="true">
+
+              <button mat-button routerLink="" routerLinkActive="active">
+                <span class="text-button hand">{{"home" | transloco}}</span>
+              </button>
+
+              <button mat-button routerLink="/college" routerLinkActive="active">
+                <span class="text-button">{{"college" | transloco}}</span>
+              </button>
+
+              <button mat-button routerLink="/teaching" routerLinkActive="active">
+                <span class="text-button">{{"teaching" | transloco}}</span>
+              </button>
+
+              <button mat-button routerLink="/investigation" routerLinkActive="active">
+                <span class="text-button">{{"investigation" | transloco}}</span>
+              </button>
+
+              <button mat-button routerLink="/internationalization" routerLinkActive="active">
+                <span class="text-button">{{"internationalization" | transloco}}</span>
+              </button>
+
+              <button mat-button routerLink="/extension" routerLinkActive="active">
+                <span class="text-button">{{"extension" | transloco}}</span>
+              </button>
+
+              <button mat-button routerLink="/services" routerLinkActive="active">
+                <span class="text-button">{{"services" | transloco}}</span>
+              </button>
+            </nav>
 
             <span class="spacer"></span>
 
             <button mat-button (click)="changeLang()">
-              <span class="text-lang">{{language}}</span>
+              <span class="text-button">{{language}}</span>
             </button>
 
             <button mat-button [matMenuTriggerFor]="menu">
@@ -58,28 +114,30 @@ import { Menu } from '@app/core/models/menu.model';
             <mat-menu #menu="matMenu">
               <a mat-menu-item *ngIf="isLoggedIn$ | async" target="_blank" href="https://clave.upr.edu.cu/iisadmpwd/">
                 <mat-icon>lock_open</mat-icon>
-                <span>Cambiar Contraseña</span>
+                <span>{{"change_password" | transloco}}</span>
               </a>
 
               <button mat-menu-item *ngIf="isLoggedIn$ | async" routerLink="auth/profile">
                 <mat-icon>person</mat-icon>
-                <span>Perfil</span>
+                <span>{{"profile" | transloco}}</span>
               </button>
 
               <mat-divider *ngIf="isLoggedIn$ | async"></mat-divider>
 
               <button mat-menu-item *ngIf="isLoggedIn$ | async"  (click)="logout()">
                 <mat-icon>exit_to_app</mat-icon>
-                <span>Cerrar Sesión</span>
+                <span>{{"logout" | transloco}}</span>
               </button>
 
               <button mat-menu-item *ngIf="((isLoggedIn$ | async) === false)" routerLink="auth/login">
                 <mat-icon>lock_open</mat-icon>
-                <span>Iniciar Sesión</span>
+                <span>{{"login" | transloco}}</span>
               </button>
             </mat-menu>
+
           </mat-toolbar-row>
         </mat-toolbar>
+      </header>
 
         <div class="layout">
           <div class="router">
@@ -90,52 +148,116 @@ import { Menu } from '@app/core/models/menu.model';
 
           <br/>
 
+
           <footer class="footer">
-            <mat-toolbar color="primary">
-              <span>{{appName}} &#169; {{year}} - Todos los Derechos Reservados</span>
+            <mat-toolbar>
+              <span>{{appName}} &#169; {{year}} - {{"footer" | transloco}}</span>
             </mat-toolbar>
           </footer>
         </div>
-
       </mat-sidenav-content>
     </mat-sidenav-container>
   `,
   styles: [`
-    .router {
-      min-height: 87vh;
+    .sidenav-container {
+      min-height: 98vh;
       height: auto;
+      overflow-y: auto;
+    }
+
+    .mat-button {
+      font-size: 18px;
+      font-weight: 500;
+      border-radius: 0px;
+    }
+
+    .mat-drawer-content {
+      overflow: hidden;
+    }
+
+    .search {
+        background-color: rgb(197, 197, 197);
+        border-radius: 2px;
+        display: flex;
+        flex-direction: row;
+        padding-left: 6px;
+        padding-right: 6px;
+        width: 40vw;
+    }
+
+    mat-icon {
+      margin-top: 8px;
+    }
+
+    input {
+      border: 0;
+      color: rgba(0,0,0,.87);
+      font-size: 16px;
+      outline: 0;
+      padding: 10px;
+      width: 100%;
+    }
+
+    .sticky{
+      position: fixed;
+      top: 0;
+      overflow: hidden;
+      z-index: 1024;
+      width: 100%;
+      box-shadow: 0 1px 2px -1px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 2px 0 rgba(0,0,0,.12);
+    }
+
+    .nav-sidebar {
+      min-height: auto;
+      height: 92vh;
+      overflow-x: hidden;
+      overflow-y: auto;
+      display: block;
     }
 
     .sidenav-container {
       height: 100%;
     }
 
-    mat-nav-list a.menu {
-      margin-top: 2px;
-      margin-bottom: 2px;
-    }
-
-    .text-lang {
+    .text-button {
       text-transform: uppercase;
+      color: white;
     }
 
     .navbar {
-      box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+      box-shadow: 0 1px 2px -1px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 2px 0 rgba(0,0,0,.12);
       position: sticky;
       z-index: 1025;
-      top: 0;
     }
 
-    .sidenav {
-      box-shadow: 3px 0 6px rgba(0,0,0,.24);
+    button.toggle {
+      color: white;
+      cursor: pointer;
     }
 
-    .sidenav-navbar {
-      box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    .navbar-sidebar {
+      box-shadow: 0 1px 2px -1px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 2px 0 rgba(0,0,0,.12);
+    }
+
+    mat-sidenav {
+      position: fixed;
+    }
+
+    .logo-sidenav {
+      width: 60px;
+      padding-right: 10px;
+      padding-left: 10px;
     }
 
     .mat-toolbar-row, .mat-toolbar-single-row {
       height: 64px;
+    }
+
+    .logo {
+      width: 60px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 10px;
     }
 
     mat-toolbar button.active, mat-toolbar a.active {
@@ -155,12 +277,6 @@ import { Menu } from '@app/core/models/menu.model';
       background: rgba(27, 26, 26, 0.2);
     }
 
-    .logo {
-      width: 50px;
-      padding-left: 10px;
-      padding-right: 10px;
-    }
-
     footer > .mat-toolbar {
       white-space: normal;
       padding-top: 20px;
@@ -173,9 +289,17 @@ import { Menu } from '@app/core/models/menu.model';
       display: block;
     }
 
-  `]
+  `],
+  animations: [
+    trigger('fadeInOut', [
+    state('void', style({
+      opacity: 0
+    })),
+    transition('void <=> *', animate(1000)),
+  ]),
+]
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent implements OnInit, AfterViewInit {
 
   isLoggedIn$: Observable<boolean>;
   username$: Observable<string>;
@@ -183,8 +307,15 @@ export class LayoutComponent implements OnInit {
   @Input() language: string;
   @Output() switchLang = new EventEmitter();
 
+  @ViewChild('stickyMenu', {static: false}) menuElement: ElementRef;
+
+  sticky = false;
+  elementPosition: any;
+
   dashboard: Menu;
   about: Menu;
+
+  nav: Menu;
 
   envName = env.envName;
   appName = env.appName;
@@ -200,20 +331,70 @@ export class LayoutComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private authService: AuthService,
     private snackBar: MatSnackBar,
-    private router: Router
-  ) {
+    private router: Router) {
+
     this.dashboard = {
-      heading: 'Escritorio',
+      heading: 'dashboard',
       icon: 'dashboard',
       link: '/dashboard',
       pages: []
     };
 
     this.about = {
-      heading: 'Acerca de',
+      heading: 'about',
       icon: 'person',
       link: '/about',
       pages: []
+    };
+
+    this.nav = {
+      heading: 'home',
+      icon: '',
+      link: '',
+      pages:  [
+        {
+          heading: 'home',
+          icon: '',
+          link: '',
+          pages: []
+        },
+        {
+          heading: 'college',
+          icon: '',
+          link: '/college',
+          pages: []
+        },
+        {
+          heading: 'teaching',
+          icon: '',
+          link: '/teaching',
+          pages: []
+        },
+        {
+          heading: 'investigation',
+          icon: '',
+          link: '/investigation',
+          pages: []
+        },
+        {
+          heading: 'internationalization',
+          icon: '',
+          link: '/internationalization',
+          pages: []
+        },
+        {
+          heading: 'extension',
+          icon: '',
+          link: '/extension',
+          pages: []
+        },
+        {
+          heading: 'services',
+          icon: '',
+          link: '/services',
+          pages: []
+        }
+      ]
     };
 
   }
@@ -222,6 +403,20 @@ export class LayoutComponent implements OnInit {
     this.isLoggedIn$ = this.authService.isAuthenticated();
     this.username$ = this.authService.getUsername();
   }
+
+  ngAfterViewInit() {
+    this.elementPosition = this.menuElement.nativeElement.offsetTop;
+  }
+
+  @HostListener('window:scroll', ['$event'])
+    handleScroll() {
+      const windowScroll = window.pageYOffset;
+      if (windowScroll >= this.elementPosition) {
+        this.sticky = true;
+      } else {
+        this.sticky = false;
+      }
+    }
 
   logout(): void {
     this.authService.logout();
