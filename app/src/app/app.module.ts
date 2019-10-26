@@ -15,7 +15,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { CoreModule } from '@app/core/core.module';
 import { SharedModule } from '@app/shared/shared.module';
-import { AuthGuard } from '@app/core/guards/auth.guard';
 import { environment } from '../environments/environment';
 
 import { translocoLoader } from './core/loaders/transloco.loader';
@@ -25,6 +24,42 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./views/+home/home.module').then(m => m.HomeModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./views/+home/home.module').then(m => m.HomeModule)
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./views/+auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: 'university',
+    loadChildren: () => import('./views/+university/university.module').then(m => m.UniversityModule)
+  },
+  {
+    path: 'teaching',
+    loadChildren: () => import('./views/+teaching/teaching.module').then(m => m.TeachingModule)
+  },
+  {
+    path: 'investigation',
+    loadChildren: () => import('./views/+investigation/investigation.module').then(m => m.InvestigationModule)
+  },
+  {
+    path: 'internationalization',
+    loadChildren: () => import('./views/+internationalization/internationalization.module').then(m => m.InternationalizationModule)
+  },
+  {
+    path: 'extension',
+    loadChildren: () => import('./views/+extension/extension.module').then(m => m.ExtensionModule)
+  },
+  {
+    path: 'services',
+    loadChildren: () => import('./views/+service/service.module').then(m => m.ServiceModule)
+  },
+  {
+    path: 'about',
+    loadChildren: () => import('./views/+about/about.module').then(m => m.AboutModule)
   },
   { path: '**', redirectTo: 'error/unauthorized' }
 ];

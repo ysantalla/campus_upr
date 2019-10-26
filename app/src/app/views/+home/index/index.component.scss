@@ -31,6 +31,12 @@ h1.mat-h1-lt-xs {
   box-shadow: 0 1px 2px -1px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 2px 0 rgba(0,0,0,.12);
 }
 
+.white {
+  background: linear-gradient(100deg, #fff,#fff);
+  color: #13632F;
+  box-shadow: 0 1px 2px -1px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 2px 0 rgba(0,0,0,.12);
+}
+
 .green-color {
   color: white;
 }
@@ -39,10 +45,18 @@ h1.mat-h1-lt-xs {
   color: #13632F;
 }
 
-.white {
-  background: linear-gradient(100deg, #fff,#fff);
-  color: #13632F;
+article {
   box-shadow: 0 1px 2px -1px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 2px 0 rgba(0,0,0,.12);
+}
+
+.link {
+  color: rgba(0, 0, 0, 0.87);
+  text-decoration: none;
+
+}
+
+.link:hover {
+  color: #13632F;
 }
 
 .container {
@@ -51,7 +65,7 @@ h1.mat-h1-lt-xs {
   height: 40vh;
 }
 
-.container-news, .container-events, .container-upr-humans {
+.container-news, .container-events, .container-upr-humans, .container-links {
   padding: 30px 30px 10px 30px;
 }
 
@@ -71,4 +85,8 @@ h1.humans-text {
 
 h2.humans-text {
   font: 400 30px/28px Roboto, "Helvetica Neue", sans-serif;
+}
+
+.icons {
+  padding: 3px;
 }

@@ -129,41 +129,47 @@
       <h1 class="mat-h1" ngClass.lt-md="mat-h1-lt-xs" ngClass.md="mat-h1-md" ngClass.gt-md="mat-h1-gt-md">{{"events" | transloco}}</h1>
     </div>
 
-    <div class="item-events" fxFlex="1 1 25%" fxFlex.lt-md="1 1 100%">
-      <h2 class="mat-h2">Lorem ipsum dolor sit amet</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-      <a mat-button >{{"read" | transloco}}</a>
-    </div>
-    <div class="item-events" fxFlex="1 1 25%" fxFlex.lt-md="1 1 100%">
-      <h2 class="mat-h2">Lorem ipsum dolor sit amet</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-      <a mat-button >{{"read" | transloco}}</a>
-    </div>
-    <div class="item-events" fxFlex="1 1 25%" fxFlex.lt-md="1 1 100%">
-      <h2 class="mat-h2">Lorem ipsum dolor sit amet</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-      <a mat-button >{{"read" | transloco}}</a>
-    </div>
-    <div class="item-events" fxFlex="1 1 25%" fxFlex.lt-md="1 1 100%">
-      <h2 class="mat-h2">Lorem ipsum dolor sit amet</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-      <a mat-button >{{"read" | transloco}}</a>
-    </div>
+    <app-news [@fadeInOut]></app-news>
   </div>
 </article>
 
 <article [ngClass]="color">
-  <div class="container-links" fxLayout="row wrap" fxLayoutAlign="center center" [@fadeInOut]>
-    <div class="item-links" fxFlex="1 1 50%" fxFlex.lt-md="1 1 100%">
+  <div class="container-links" fxLayout="row wrap" fxLayoutAlign="start start" [@fadeInOut]>
+    <div class="item-links" fxFlex="1 1 33%" fxFlex.lt-md="1 1 100%">
+      <h2 class="mat-h2">{{'contact' | transloco}}</h2>
+        <mat-list role="list">
+            <mat-list-item role="listitem"><picture class="icons"><img width="40" src="./assets/img/icons/navigation.svg" /></picture> <span>Calle Martí Final</span></mat-list-item>
+
+            <mat-list-item role="listitem"><picture class="icons"><img width="40" src="./assets/img/icons/phone.svg" /></picture> <span>(53) 4871-5496</span></mat-list-item>
+
+            <mat-list-item role="listitem"><picture class="icons"><img width="40" src="./assets/img/icons/email.svg" /></picture> <a class="link" href="mailto://contact.upr.edu.cu">contact@upr.edu.cu</a></mat-list-item>
+
+        </mat-list>
+    </div>
+
+    <div class="item-links" fxFlex="1 1 33%" fxFlex.lt-md="1 1 100%">
+        <h2 class="mat-h2">{{'studies' | transloco}}</h2>
+
+        <mat-list role="list">
+          <mat-list-item role="listitem"><a class="link" href="http://gespro.upr.edu.cu/">Proyectos</a></mat-list-item>
+          <mat-list-item role="listitem"><a class="link" href="https://moodle.upr.edu.cu/">Pregrado</a></mat-list-item>
+          <mat-list-item role="listitem"><a class="link" href="https://moodle.upr.edu.cu/">Postgrado</a></mat-list-item>
+        </mat-list>
 
     </div>
 
-    <div class="item-links" fxFlex="1 1 50%" fxFlex.lt-md="1 1 100%">
+    <div class="item-links" fxFlex="1 1 33%" fxFlex.lt-md="1 1 100%">
+        <h2 class="mat-h2">{{'interest' | transloco}}</h2>
+
+        <mat-list role="list">
+          <mat-list-item role="listitem"><a class="link" href="http://www.mes.gob.cu/">Ministerio de Educación Superior</a></mat-list-item>
+          <mat-list-item role="listitem"><a class="link" href="https://www.ecured.cu/EcuRed:Enciclopedia_cubana">Ecured</a></mat-list-item>
+          <mat-list-item role="listitem"><a class="link" href="http://www.cubadebate.cu/">Cubadebate</a></mat-list-item>
+          <mat-list-item role="listitem"><a class="link" href="http://www.unavarra.es/relacionesinternacionales/erasmus-paises-asociados">Programa Erasmo</a></mat-list-item>
+        </mat-list>
 
     </div>
   </div>
 </article>
+
+

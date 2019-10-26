@@ -25,8 +25,7 @@ import { TranslocoService } from '@ngneat/transloco';
         mode="over"
         [opened]="(isHandset$ | async) === false && (isLoggedIn$ | async)">
         <mat-toolbar class="navbar-sidebar">
-          <img class="logo-sidenav" src="./assets/img/logo_350x250.png" />
-          <span class="text-button">{{appName}}</span>
+          <img class="logo-sidenav" src="./assets/img/logo-350x89.png" />
         </mat-toolbar>
 
         <nav class="nav-sidebar">
@@ -42,7 +41,7 @@ import { TranslocoService } from '@ngneat/transloco';
       <mat-toolbar class="" style="background-color: white;" [@fadeInOut]>
         <mat-toolbar-row>
           <picture [fxHide.lt-lg]="true">
-            <img class="logo" src="./assets/img/logo_350x250.png">
+            <img class="logo" src="./assets/img/logo-350x89.png">
           </picture>
           <span class="spacer"></span>
           <div class="search">
@@ -50,7 +49,24 @@ import { TranslocoService } from '@ngneat/transloco';
             <input type="search" [placeholder]="'search' | transloco" class="search">
           </div>
           <span class="spacer"></span>
-          <button mat-raised-button>{{'contacts' | transloco}}</button>
+
+          <ul class="social-buttons">
+            <li>
+              <a matTooltip="Facebook" href="https://www.facebook.com/UprCuba/">
+                <img width="40" src="./assets/img/social-icons/facebook.svg" />
+              </a>
+            </li>
+            <li>
+              <a matTooltip="Twitter" href="https://twitter.com/upr_cuba">
+                <img width="40" src="./assets/img/social-icons/twitter.svg" />
+              </a>
+            </li>
+            <li>
+              <a [matTooltip]="'contacts' | transloco" href="http://directorio.upr.edu.cu">
+                <img width="40" src="./assets/img/social-icons/phone-book.svg" />
+              </a>
+            </li>
+          </ul>
         </mat-toolbar-row>
       </mat-toolbar>
 
@@ -72,12 +88,12 @@ import { TranslocoService } from '@ngneat/transloco';
 
             <nav class="nav-items" [fxHide.lt-lg]="true">
 
-              <button mat-button routerLink="" routerLinkActive="active">
+              <button mat-button routerLink="/home" routerLinkActive="active">
                 <span class="text-button hand">{{"home" | transloco}}</span>
               </button>
 
-              <button mat-button routerLink="/college" routerLinkActive="active">
-                <span class="text-button">{{"college" | transloco}}</span>
+              <button mat-button routerLink="/university" routerLinkActive="active">
+                <span class="text-button">{{"university" | transloco}}</span>
               </button>
 
               <button mat-button routerLink="/teaching" routerLinkActive="active">
@@ -165,6 +181,10 @@ import { TranslocoService } from '@ngneat/transloco';
       overflow-y: auto;
     }
 
+    .item {
+      min-height: 90vh;
+    }
+
     .mat-button {
       font-size: 18px;
       font-weight: 500;
@@ -173,6 +193,18 @@ import { TranslocoService } from '@ngneat/transloco';
 
     .mat-drawer-content {
       overflow: hidden;
+    }
+
+    .social-buttons > li {
+      position: relative;
+      float: left;
+      margin: 3px;
+    }
+
+    .social-buttons {
+      list-style-type: none;
+      padding-top: 10px;
+      margin: 0px;
     }
 
     .search {
@@ -185,7 +217,7 @@ import { TranslocoService } from '@ngneat/transloco';
         width: 40vw;
     }
 
-    mat-icon {
+    .search > mat-icon {
       margin-top: 8px;
     }
 
@@ -244,7 +276,7 @@ import { TranslocoService } from '@ngneat/transloco';
     }
 
     .logo-sidenav {
-      width: 60px;
+      width: 230px;
       padding-right: 10px;
       padding-left: 10px;
     }
@@ -254,10 +286,8 @@ import { TranslocoService } from '@ngneat/transloco';
     }
 
     .logo {
-      width: 60px;
-      padding-left: 10px;
-      padding-right: 10px;
-      padding-top: 10px;
+      width: 245px;
+      padding-top: 9px;
     }
 
     mat-toolbar button.active, mat-toolbar a.active {
@@ -359,9 +389,9 @@ export class LayoutComponent implements OnInit, AfterViewInit {
           pages: []
         },
         {
-          heading: 'college',
+          heading: 'university',
           icon: '',
-          link: '/college',
+          link: '/university',
           pages: []
         },
         {

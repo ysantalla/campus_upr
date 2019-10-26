@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: '',
     component: IndexComponent,
-    data: {title: 'about'}
+    data: {title: 'home'}
   }
 ];
 
@@ -22,4 +22,4 @@ const routes: Routes = [
   ],
   declarations: [IndexComponent]
 })
-export class AboutModule { }
+export class InternationalizationModule { }

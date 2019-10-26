@@ -7,7 +7,7 @@ import { catchError, finalize } from 'rxjs/operators';
 @Component({
   selector: 'app-news',
   template: `
-    <div class="container-news" *ngIf="error === false" fxLayout="row wrap" fxLayoutAlign="center center">
+    <div class="container-news" *ngIf="error === false" fxLayout="row wrap" fxLayoutAlign="start start">
 
       <div *ngFor="let n of lastNews$ | async" class="item-news" style="padding: 10px;" fxFlex="1 1 25%" fxFlex.lt-md="1 1 100%">
         <h2 class="mat-h2">{{n.title}}</h2>

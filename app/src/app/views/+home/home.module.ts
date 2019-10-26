@@ -12,6 +12,11 @@ const routes: Routes = [
     path: '',
     component: IndexComponent,
     data: {title: 'home'}
+  },
+  {
+    path: 'index',
+    component: IndexComponent,
+    data: {title: 'home'}
   }
 ];
 
@@ -24,4 +29,3 @@ const routes: Routes = [
   declarations: [IndexComponent, NewsComponent]
 })
 export class HomeModule { }
-

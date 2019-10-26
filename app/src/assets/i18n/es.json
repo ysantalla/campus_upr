@@ -3,7 +3,7 @@
   "dynamic": "transloco {{value}}",
   "welcome": "Universidad de Pinar del Río “Hermanos Saíz Montes de Oca”",
   "home": "Inicio",
-  "college": "Universidad",
+  "university": "Universidad",
   "teaching": "Docencia",
   "investigation": "Investigación",
   "internationalization": "Internacionalización",
@@ -25,5 +25,12 @@
   "doctors": "Doctores",
   "error_news": "Oops ha ocurrido un error, al cargar las noticias!!!",
   "search": "Buscar",
-  "contacts": "Contactos"
+  "contacts": "Contactos",
+  "contact": "Contacto",
+  "studies": "Estudios",
+  "interest": "Enlaces de Interés",
+  "email": "Correo Electrónico",
+  "phone": "Teléfono",
+  "view": "Visión",
+  "mission": "Misión"
 }
